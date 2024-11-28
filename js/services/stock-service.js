@@ -22,22 +22,14 @@ export const fetchStockData = async (stockName, purchaseDate) => {
 
 			if (purchasePrice && currentPrice) {
 				// Salir del bucle si ambos precios se han encontrado
-				return {
-					purchasePrice,
-					currentPrice,
-				}
+				break
 			}
 		}
 
-		if (purchasePrice === null) {
-			alert('No se encontró el precio de la acción para la fecha de compra.')
+		return {
+			purchasePrice,
+			currentPrice,
 		}
-
-		if (currentPrice === null) {
-			alert('No se pudo obtener el precio actual de la acción.')
-		}
-
-		return null
 	} catch (error) {
 		console.error('Error al realizar la solicitud:', error)
 		alert('Hubo un error al obtener los datos. Intenta de nuevo más tarde.')
