@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Acciones</title>
-  <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
   <header>
     <div>
       <h1>Panel de Acciones</h1>
     </div>
   </header>
+  <main>
+    <div>
+      <section id="form-section">
+        <h2>Registra Compra de Acciones</h2>
+        <form id="stock-form">
+          <div>
+            <label for="stock-name">Nombre de la Acción:</label>
+            <input type="text" id="stock-name" placeholder="Ej: AAPL" required>
+          </div>
 
+          <div>
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" placeholder="Ej: 10" required>
+          </div>
 
-  <script type="module" src="js/index.js"></script>
+          <div>
+            <label for="purchase-date">Fecha de Compra:</label>
+            <input type="date" id="purchase-date" required>
+          </div>
+
+          <button type="submit">Registrar Compra</button>
+        </form>
+      </section>
+    </div>
+  </main>
 </body>
-
 </html>
