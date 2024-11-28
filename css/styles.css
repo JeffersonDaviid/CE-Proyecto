@@ -82,3 +82,45 @@ header {
   button[type="submit"]:hover {
 	background-color: #218838;
   }
+
+  /* Estilos del dashboard */
+#dashboard {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #dashboard h2 {
+	font-size: 1.8rem;
+	margin-bottom: 15px;
+  }
+  
+  table {
+	width: 100%;
+	border-collapse: collapse;
+  }
+  
+  th, td {
+	padding: 12px;
+	text-align: center;
+	border: 1px solid #ddd;
+  }
+  
+  th {
+	background-color: #f8f9fa;
+  }
+  
+  tr:nth-child(even) {
+	background-color: #f1f3f5;
+  }
+  
+  /* Estilos para las ganancias y pérdidas */
+  .gain {
+	color: green;
+  }
+  
+  .loss {
+	color: red;
+  }
+  
