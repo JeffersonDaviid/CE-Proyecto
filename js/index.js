@@ -9,8 +9,12 @@ document.getElementById('stock-form').addEventListener('submit', async function 
   const quantity = parseInt(document.getElementById('quantity').value);
   const purchaseDate = document.getElementById('purchase-date').value;
 
+  const purchaseDateObj = new Date(purchaseDate);
+  purchaseDateObj.setDate(purchaseDateObj.getDate() + 1);
+  const purchaseDateAdjusted = purchaseDateObj.toISOString().split('T')[0];
+
   try {
-    const stockData = await fetchStockData(stockName, purchaseDate);
+    const stockData = await fetchStockData(stockName, purchaseDateAdjusted);
 
     if (stockData.purchasePrice === null) {
       alert('No se encontró el precio de la acción para la fecha de compra.');
@@ -22,7 +26,6 @@ document.getElementById('stock-form').addEventListener('submit', async function 
       return;
     }
 
-    // Calcular valores utilizando la función de utilidades
     const { totalCost, currentValue, gainLoss, percentage } = calculateStockValues(
       stockData.purchasePrice,
       stockData.currentPrice,
@@ -32,7 +35,7 @@ document.getElementById('stock-form').addEventListener('submit', async function 
     updateDashboard(
       stockName,
       quantity,
-      new Date(purchaseDate).getTime() / 1000,
+      new Date(purchaseDateAdjusted).getTime() / 1000,
       totalCost,
       currentValue,
       gainLoss,
