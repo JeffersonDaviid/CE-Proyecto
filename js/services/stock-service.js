@@ -1,37 +1,36 @@
-export const fetchStockData = async (stockName, purchaseDate) => {
-	const apiKey = 'WIHWUHV5NNL5K90R'
-	const API_URL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockName}&apikey=${apiKey}&outputsize=full&datatype=csv`
+export async function fetchStockData(stockName, purchaseDate) {
+	const apiKey = 'WIHWUHV5NNL5K90R'; // Reemplaza con tu clave de API de Alpha Vantage
+  
 	try {
-		const response = await fetch(API_URL)
-		const data = await response.text()
-		const rows = data.split('\n')
-
-		// Buscar la fecha de compra en los datos
-		let purchasePrice = null
-		let currentPrice = null
-
-		for (let row of rows) {
-			const [date, open, high, low, close, volume] = row.split(',')
-
-			if (date && date === purchaseDate) {
-				purchasePrice = parseFloat(close)
-			}
-			if (date && new Date(date) <= new Date() && !currentPrice) {
-				currentPrice = parseFloat(close)
-			}
-
-			if (purchasePrice && currentPrice) {
-				// Salir del bucle si ambos precios se han encontrado
-				break
-			}
+	  const response = await fetch(
+		`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockName}&apikey=${apiKey}&outputsize=full&datatype=csv`
+	  );
+  
+	  const data = await response.text();
+	  const rows = data.split('\n');
+  
+	  let purchasePrice = null;
+	  let currentPrice = null;
+  
+	  for (let row of rows) {
+		const [date, open, high, low, close, volume] = row.split(',');
+  
+		if (date && date === purchaseDate) {
+		  purchasePrice = parseFloat(close);
 		}
-
-		return {
-			purchasePrice,
-			currentPrice,
+		if (date && new Date(date) <= new Date() && !currentPrice) {
+		  currentPrice = parseFloat(close);
 		}
+  
+		if (purchasePrice && currentPrice) {
+		  break;
+		}
+	  }
+  
+	  return { purchasePrice, currentPrice };
 	} catch (error) {
-		console.error('Error al realizar la solicitud:', error)
-		alert('Hubo un error al obtener los datos. Intenta de nuevo más tarde.')
+	  console.error('Error al realizar la solicitud:', error);
+	  throw new Error('Hubo un error al obtener los datos.');
 	}
-}
+  }
+  
