@@ -1,5 +1,6 @@
 import { fetchStockData } from './services/stock-service.js'
-import { calculateStockValues } from './utils.js'
+import { calculateStockValues } from './utils/utils.js'
+import { updateDashboard } from './controllers/dashboard-ctrl.js'
 
 document.getElementById('stock-form').addEventListener('submit', async function (e) {
 	e.preventDefault()
@@ -24,5 +25,15 @@ document.getElementById('stock-form').addEventListener('submit', async function 
 	const { totalCost, currentValue, gainLoss, percentage } = calculateStockValues(
 		stockData.purchasePrice,
 		stockData.currentPrice
+	)
+
+	updateDashboard(
+		stockName,
+		quantity,
+		purchaseDate,
+		totalCost,
+		currentValue,
+		gainLoss,
+		percentage
 	)
 })
