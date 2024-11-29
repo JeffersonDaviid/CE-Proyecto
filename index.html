@@ -14,9 +14,52 @@
       <h1>Panel de Acciones</h1>
     </div>
   </header>
+  <main>
+    <div>
+      <section id="form-section">
+        <h2>Registra Compra de Acciones</h2>
+        <form id="stock-form">
+          <div>
+            <label for="stock-name">Nombre de la Acción:</label>
+            <input type="text" id="stock-name" placeholder="Ej: AAPL" required>
+          </div>
 
+          <div>
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" placeholder="Ej: 10" required>
+          </div>
 
-  <script type="module" src="js/index.js"></script>
+          <div>
+            <label for="purchase-date">Fecha de Compra:</label>
+            <input type="date" id="purchase-date" required>
+          </div>
+
+          <button type="submit">Registrar Compra</button>
+        </form>
+      </section>
+
+      <section id="dashboard">
+        <h2>Resumen de Acciones Compradas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Acción</th>
+              <th>Cantidad</th>
+              <th>Fecha de Compra</th>
+              <th>Precio de Compra</th> <!-- Nueva columna -->
+              <th>Valor Actual</th>
+              <th>Ganancia/Pérdida</th>
+              <th>Porcentaje</th>
+            </tr>
+          </thead>
+          <tbody id="stock-summary">
+            <!-- Actualizado dinámicamente -->
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>
