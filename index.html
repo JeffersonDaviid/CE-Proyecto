@@ -4,63 +4,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/home/home.css">
+  <link rel="icon" href="assets/icons/page-icon.jpg" type="image/x-icon">
   <title>Panel de Acciones</title>
-  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <header>
-    <div>
+    <div class="header-container">
       <h1>Panel de Acciones</h1>
     </div>
   </header>
   <main>
-    <div>
+    <div class="main-container">
+      <!-- Formulario -->
       <section id="form-section">
-        <h2>Registra Compra de Acciones</h2>
-        <form id="stock-form">
-          <div>
-            <label for="stock-name">Nombre de la Acción:</label>
-            <input type="text" id="stock-name" placeholder="Ej: AAPL" required>
+        <div class="form-container">
+          <div class="form-left">
+            <h2>Registra Compra de Acciones</h2>
+            <form id="stock-form">
+              <div class="form-group">
+                <label for="stock-name">Nombre de la Acción:</label>
+                <input type="text" id="stock-name" placeholder="Ej: AAPL" required>
+              </div>
+
+              <div class="form-group">
+                <label for="quantity">Cantidad:</label>
+                <input type="number" id="quantity" placeholder="Ej: 10" required min="1">
+              </div>
+
+              <div class="form-group">
+                <label for="purchase-date">Fecha de Compra:</label>
+                <input type="date" id="purchase-date" required>
+              </div>
+
+              <button type="submit" class="submit-button">Registrar Compra</button>
+            </form>
           </div>
-
-          <div>
-            <label for="quantity">Cantidad:</label>
-            <input type="number" id="quantity" placeholder="Ej: 10" required min="1">
+          <div class="form-right">
+            <img src="assets/images/buy-image.png" alt="Imagen Compra de Acciones">
           </div>
-
-
-          <div>
-            <label for="purchase-date">Fecha de Compra:</label>
-            <input type="date" id="purchase-date" required>
-          </div>
-
-          <button type="submit">Registrar Compra</button>
-        </form>
+        </div>
       </section>
 
+
+      <!-- Historial -->
       <section id="dashboard">
-        <h2>Resumen de Acciones Compradas</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Acción</th>
-              <th>Cantidad</th>
-              <th>Fecha de Compra</th>
-              <th>Precio de Compra</th> <!-- Nueva columna -->
-              <th>Valor Actual</th>
-              <th>Ganancia/Pérdida</th>
-              <th>Porcentaje</th>
-            </tr>
-          </thead>
-          <tbody id="stock-summary">
-            <!-- Actualizado dinámicamente -->
-          </tbody>
-        </table>
+        <div class="dashboard-header">
+          <h2>Historial de Compras</h2>
+          <p>
+            <a href="pages/dashboard/dashboard-resume.html" class="button-link">Resumen</a>
+          </p>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th id="order-by-name">
+                  <span>
+                    Acción
+                    <!-- up arror -->
+                    <svg class="order-alp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
+                      width="1.5rem" height="1.5rem">
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <path d="M7 14l5-5 5 5H7z" />
+                    </svg>
+                  </span>
+
+                </th>
+                <th>Cantidad</th>
+                <th>Fecha de Compra</th>
+                <th>Precio de Compra</th>
+                <th>Valor Actual</th>
+                <th id="order-by-gainloss">
+                  <span>
+                    Ganancia/Pérdida
+                    <!-- up arror -->
+                    <svg class="order-up-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
+                      width="1.5rem" height="1.5rem">
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <path d="M7 14l5-5 5 5H7z" />
+                    </svg>
+                    <!-- down arror -->
+                    <svg class="order-down-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
+                      width="1.5rem" height="1.5rem">
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <path d="M7 10l5 5 5-5H7z" />
+                    </svg>
+                  </span>
+                </th>
+                <th>Porcentaje</th>
+              </tr>
+            </thead>
+            <tbody id="stock-summary">
+              <!-- Actualizado dinámicamente -->
+            </tbody>
+          </table>
+        </div>
       </section>
     </div>
   </main>
-  <script type="module" src="./js/index.js"></script>
+  <script type="module" src="pages/home/home.js"></script>
 </body>
 
 </html>
