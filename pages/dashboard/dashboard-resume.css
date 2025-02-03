@@ -1,0 +1,185 @@
+/* Reset CSS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Arial', sans-serif;
+	line-height: 1.6;
+	color: #333;
+	background-color: #f8f9fa; /* Fondo suave y elegante */
+}
+
+/* Header */
+header {
+	background-color: #4caf50; /* Verde moderno */
+	color: white;
+	text-align: center;
+	padding: 2rem 0;
+}
+
+header h1 {
+	font-size: 2rem;
+}
+
+.container {
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* Filters Section */
+.filters {
+	display: flex;
+	justify-content: space-between;
+	background-color: #ffffff;
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 2rem;
+}
+
+.filters fieldset {
+	border: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+}
+
+.filters legend {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #4caf50;
+}
+
+.filter-options {
+	display: flex;
+	gap: 1rem;
+}
+
+input[type='radio'] {
+	margin-right: 0.5rem;
+}
+
+label {
+	font-size: 1rem;
+	color: #333;
+	cursor: pointer;
+}
+
+.button-link {
+	display: inline-block;
+	margin-top: 1rem;
+	padding: 0.8rem 1.5rem;
+	background-color: #4caf50;
+	color: white;
+	text-decoration: none;
+	border-radius: 8px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-link:hover {
+	background-color: #388e3c;
+	transform: scale(1.05);
+}
+
+/* Chart Section */
+.chart-section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+
+.chart-container {
+	flex: 1;
+	max-width: 600px;
+	background-color: #ffffff;
+	padding: 1rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 1rem 2rem;
+}
+
+.chart-details {
+	flex: 1;
+	background-color: #ffffff;
+	padding: 1.5rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-details h2 {
+	font-size: 1.8rem;
+	color: #4caf50;
+	margin-bottom: 1rem;
+}
+
+.chart-details ul {
+	list-style-type: square;
+	padding-left: 1.5rem;
+}
+
+.chart-details p {
+	margin-bottom: 1rem;
+}
+
+/* Table Section */
+#dashboard2 {
+	background-color: #ffffff;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#dashboard2 h2 {
+	font-size: 1.8rem;
+	color: #4caf50;
+	margin-bottom: 1rem;
+}
+
+.table-container {
+	overflow-x: auto;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 1rem;
+}
+
+th,
+td {
+	text-align: left;
+	padding: 0.8rem;
+	border-bottom: 1px solid #ddd;
+}
+
+th {
+	background-color: #4caf50;
+	color: white;
+	font-weight: bold;
+}
+
+tr:hover {
+	background-color: #f1f1f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.chart-section {
+		flex-direction: column;
+	}
+
+	.filters fieldset {
+		flex-direction: column;
+		gap: 0.8rem;
+	}
+
+	.filters {
+		flex-direction: column;
+	}
+}

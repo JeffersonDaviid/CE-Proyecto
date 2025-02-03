@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../home/home.css">
+  <link rel="stylesheet" href="dashboard-resume.css">
+  <!-- page icon -->
+  <link rel="icon" href="../../assets/icons/page-icon.jpg" type="image/x-icon">
+  <title>Dashboard</title>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="header-container">
+      <h1>Dashboard de Acciones</h1>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Filtros -->
+    <section class="filters">
+      <fieldset>
+        <legend>Filtrar por:</legend>
+        <div class="filter-options">
+          <input type="radio" name="stock-filter" class="stock-filter" value="quantity" id="filter-quantity" checked>
+          <label for="filter-quantity">Cantidad</label>
+
+          <input type="radio" name="stock-filter" class="stock-filter" value="gain" id="filter-gain">
+          <label for="filter-gain">Ganancia</label>
+
+          <input type="radio" name="stock-filter" class="stock-filter" value="loss" id="filter-loss">
+          <label for="filter-loss">Pérdida</label>
+        </div>
+      </fieldset>
+      <p>
+        <a href="../../index.html" class="button-link">Volver al Panel de Acciones</a>
+      </p>
+    </section>
+
+    <!-- Gráfico y Detalles -->
+    <section class="chart-section">
+      <div class="chart-container">
+        <canvas class="myChart"></canvas>
+      </div>
+      <div class="chart-details">
+        <h2>Detalles del Gráfico</h2>
+        <p>
+          Este gráfico de pastel muestra la distribución del top 5 acciones según el filtro seleccionado. Puedes
+          analizar la proporción de:
+        </p>
+        <ul>
+          <li><strong>Ganancia:</strong> Valor de acciones con rendimientos positivos.</li>
+          <li><strong>Pérdida:</strong> Valor de acciones con valores decrecientes.</li>
+          <li><strong>Cantidad:</strong> Cantidad de acciones con mayor volumen.</li>
+        </ul>
+        <br>
+        <p>
+          Cambia el filtro para visualizar las métricas relevantes y obtener una mejor comprensión de tus inversiones.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <section id="dashboard2">
+    <h2>Resumen de compras</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Acción</th>
+            <th>Cantidad Total</th>
+            <th>Valor USD</th>
+            <th>Precio de Costo</th>
+            <th>% Ganancia/Pérdida</th>
+            <th>$ Ganancia/Pérdida</th>
+          </tr>
+        </thead>
+        <tbody id="stock-summary2">
+          <!-- Actualizado dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="dashboard-resume.js"></script>
+
+</body>
+
+</html>
