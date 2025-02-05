@@ -1,4 +1,8 @@
 export const calculateStockValues = (purchasePrice, currentPrice, quantity) => {
+	if (isNaN(purchasePrice) || isNaN(currentPrice) || isNaN(quantity)) {
+	  throw new Error('Los valores de entrada no son válidos.');
+	}
+  
 	const totalCost = purchasePrice * quantity; // Total invertido en la compra
 	const currentValue = currentPrice * quantity; // Valor actual total de las acciones
 	const gainLoss = currentValue - totalCost; // Ganancia/Pérdida total
@@ -11,4 +15,3 @@ export const calculateStockValues = (purchasePrice, currentPrice, quantity) => {
 	  percentage,
 	};
   };
-  

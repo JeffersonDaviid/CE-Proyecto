@@ -1,4 +1,4 @@
-import { fetchStockData } from '../../services/stock-service.js';
+import { fetchCurrentPrice } from '../../services/stock-service.js';
 import { calculateStockValues } from '../../utils/utils.js';
 import { loadBuyHistory, sortStocks } from '../../controllers/dashboard-ctrl.js';
 
@@ -28,6 +28,7 @@ document.getElementById('stock-form').addEventListener('submit', async function 
   const stockName = document.getElementById('stock-name').value.toUpperCase().trim();
   const quantity = parseInt(document.getElementById('quantity').value);
   const purchaseDate = document.getElementById('purchase-date').value;
+  const purchasePrice = parseFloat(document.getElementById('purchase-price').value);
 
   const purchaseDateObj = new Date(purchaseDate);
   purchaseDateObj.setDate(purchaseDateObj.getDate() + 1);
@@ -38,19 +39,18 @@ document.getElementById('stock-form').addEventListener('submit', async function 
       alert('La cantidad debe ser un número mayor a 0.');
       return;
     }
+    if (isNaN(purchasePrice) || purchasePrice <= 0) {
+      alert('El precio de compra debe ser un número mayor a 0.');
+      return;
+    }
     if (stockName === '') {
       alert('El nombre de la acción no puede estar vacío.');
       return;
     }
 
-    const stockData = await fetchStockData(stockName, purchaseDateAdjusted);
+    const currentPrice = await fetchCurrentPrice(stockName);
 
-    if (stockData.purchasePrice === null) {
-      alert('No se encontró el precio de la acción para la fecha de compra.');
-      return;
-    }
-
-    if (stockData.currentPrice === null) {
+    if (currentPrice === null) {
       alert('No se pudo obtener el precio actual de la acción.');
       return;
     }
@@ -58,7 +58,7 @@ document.getElementById('stock-form').addEventListener('submit', async function 
     // Guardar en localStorage el precio actual
     const stockToday = {
       stockName,
-      currentPrice: stockData.currentPrice,
+      currentPrice,
     };
 
     let stocksToday = JSON.parse(localStorage.getItem('stocksToday')) || [];
@@ -71,9 +71,9 @@ document.getElementById('stock-form').addEventListener('submit', async function 
     localStorage.setItem('stocksToday', JSON.stringify(stocksToday));
 
     // Calcular el costo total
-    const { totalCost } = calculateStockValues(
-      stockData.purchasePrice,
-      stockData.currentPrice,
+    const { totalCost, currentValue, gainLoss, percentage } = calculateStockValues(
+      purchasePrice,
+      currentPrice,
       quantity
     );
 
@@ -83,6 +83,7 @@ document.getElementById('stock-form').addEventListener('submit', async function 
       quantity,
       purchaseDate: new Date(purchaseDateAdjusted).getTime() / 1000,
       totalCost,
+      purchasePrice
     };
     let stocks = JSON.parse(localStorage.getItem('stocks')) || [];
     stocks.push(stock);
